@@ -1,0 +1,70 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov 13 20:36:09 2019
+
+@author: Admin
+"""
+
+import cv2
+import numpy as np
+
+def mean(img):
+    #mean = np.mean(img)
+    summ = 0
+    counter = 0
+    for i in img:
+        for j in i:
+            for k in j:
+                summ += k
+                counter += 1
+    return summ/counter
+        
+def var(img,mean):
+    #var = np.var(img)
+    summ = 0
+    counter = 0
+    for i in img:
+        for j in i:
+            for k in j:
+                summ += ((k-mean))**2
+                counter += 1
+    
+    return summ/counter
+
+def energy(img):
+    summ = 0
+    for i in img:
+        for j in i:
+            for k in j:
+                summ += k*k
+    return summ
+        
+def entropy(img):
+    intensity = np.zeros(256) 
+    t1 = img[:,:,0]
+    for i in t1:
+        for j in i:
+            intensity[j] += 1       
+    
+    for i in range(len(intensity)):
+        intensity[i] = intensity[i]/(512*512)
+    
+    for i in range(len(intensity)):
+        if intensity[i] == 0:
+            i+=1
+        else:
+            intensity[i] = intensity[i]*(np.log2(intensity[i]))
+
+    return -np.sum(intensity)    
+    
+if __name__ == "__main__":
+    img = cv2.imread(r'Downloads\lenna.jpg')
+    mean = mean(img)
+    var = var(img,mean)
+    energy = energy(img)
+    ent = entropy(img) 
+    print("Mean = \n",mean)
+    print("Var = \n",var)
+    print("Energy = \n",energy)
+    print("Entropy = \n",ent)
+    
