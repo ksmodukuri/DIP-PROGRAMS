@@ -1,0 +1,68 @@
+import numpy as np
+import cv2   
+from matplotlib import pyplot as plt
+
+## Rectangle
+img = cv2.imread('image.png',0)
+f = np.fft.fft2(img)
+phase = np.angle(f)
+fshift = np.fft.fftshift(f)
+mag = 20*(np.log(np.abs((fshift))))
+plt.subplot(1,3,1)
+plt.imshow(img,cmap='gray')
+plt.title('Original Image')
+plt.subplot(1,3,2)
+plt.imshow(mag, cmap='gray')
+plt.title('Magnitude')
+plt.subplot(1,3,3)
+plt.imshow(phase,cmap='gray') 
+plt.title('Phase')
+
+##Rotated Rectangle
+img = cv2.imread('1box.png',0)
+f = np.fft.fft2(img)
+phase = np.angle(f)
+fshift = np.fft.fftshift(f)
+mag = 20*(np.log(np.abs((fshift))))
+plt.subplot(1,3,1)
+plt.imshow(img,cmap='gray')
+plt.title('Original Image')
+plt.subplot(1,3,2)
+plt.imshow(mag, cmap='gray')
+plt.title('Magnitude')
+plt.subplot(1,3,3)
+plt.imshow(phase,cmap='gray') 
+plt.title('Phase')
+
+##Circle
+img = cv2.imread('circle.png',0)
+f = np.fft.fft2(img)
+phase = np.angle(f)
+fshift = np.fft.fftshift(f)
+mag = 20*(np.log(np.abs((fshift))))
+plt.subplot(1,3,1)
+plt.imshow(img,cmap='gray')
+plt.title('Original Image')
+plt.subplot(1,3,2)
+plt.imshow(mag, cmap='gray')
+plt.title('Magnitude')
+plt.subplot(1,3,3)
+plt.imshow(phase,cmap='gray') 
+plt.title('Phase')
+
+##Star
+img = cv2.imread('star.png',0)
+f = np.fft.fft2(img)
+phase = np.angle(f)
+fshift = np.fft.fftshift(f)
+mag = 20*(np.log(np.abs((fshift))))
+plt.subplot(1,3,1)
+plt.imshow(img,cmap='gray')
+plt.title('Original Image')
+plt.subplot(1,3,2)
+plt.imshow(mag, cmap='gray')
+plt.title('Magnitude')
+plt.subplot(1,3,3)
+plt.imshow(phase,cmap='gray') 
+plt.title('Phase')
+
