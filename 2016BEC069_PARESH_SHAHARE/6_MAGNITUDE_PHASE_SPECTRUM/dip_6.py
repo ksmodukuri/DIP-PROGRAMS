@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img = cv2.imread('lena5.jpg',0)
+plt.subplot(141),  plt.title('input image')
+plt.imshow(img,cmap='gray'),  plt.axis("off")
+a=np.fft.fft2(img)
+fshift = np.fft.fftshift(a)
+mag = 20*np.log(np.abs(fshift))
+plt.subplot(142),  plt.title('magnitude plot')
+plt.imshow(mag, cmap = 'gray'),plt.axis("off")
+d1=np.angle(fshift)
+plt.subplot(143),  plt.title('phase plot')
+plt.imshow(d1, cmap = 'gray'),plt.axis("off")
+fshift1=np.fft.ifftshift(fshift)
+fshift1 = np.fft.ifft2(fshift)
+mag1 = 20*np.log(np.abs(fshift1))
+plt.subplot(144), plt.title('orignal image')
+plt.imshow(mag1, cmap = 'gray'), plt.axis("off")
+plt.show()
+cv2.waitKey(0)
